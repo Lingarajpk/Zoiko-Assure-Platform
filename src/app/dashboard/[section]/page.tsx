@@ -27,7 +27,7 @@ export default async function SectionPage({ params }: PageProps<"/dashboard/[sec
       </div>
 
       <section
-        className="glass card-hover grid place-items-center rounded-3xl px-6 py-20 text-center animate-fade-up"
+        className="glass card-hover grid place-items-center rounded-3xl px-5 py-14 text-center sm:px-6 sm:py-20 animate-fade-up"
         style={{ ["--d" as string]: "120ms" }}
       >
         <div className="relative">

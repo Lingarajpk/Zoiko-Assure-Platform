@@ -11,7 +11,42 @@ const statusTone: Record<ActionStatus, "pink" | "orange" | "blue"> = {
 export function PriorityActions({ delay = 0 }: { delay?: number }) {
   return (
     <Panel title="Priority Actions" viewAllHref="/dashboard/exceptions-reviews" delay={delay}>
-      <div className="-mx-2 overflow-x-auto">
+      {/* phones: stacked cards instead of a sideways-scrolling table */}
+      <ul className="space-y-3 md:hidden">
+        {priorityActions.map((a, i) => (
+          <li
+            key={a.title}
+            className="rounded-2xl border border-line bg-glass p-3.5 transition-colors active:bg-glass-strong animate-fade-up"
+            style={{ ["--d" as string]: `${delay + 150 + i * 80}ms` }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="font-semibold text-fg">{a.title}</p>
+                <p className="text-xs text-subtle">
+                  {a.framework} · {a.area}
+                </p>
+              </div>
+              <Pill tone={statusTone[a.status]}>{a.status}</Pill>
+            </div>
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+              <span className="flex items-center gap-2">
+                <span
+                  className={`grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br ${a.avatar} text-[10px] font-bold text-navy`}
+                >
+                  {a.initials}
+                </span>
+                <span className="text-sm font-medium text-fg">{a.owner}</span>
+              </span>
+              <span className="flex items-center gap-1.5 text-xs text-muted">
+                <CalendarDays className="h-3.5 w-3.5 text-subtle" />
+                {a.due}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div className="-mx-2 hidden overflow-x-auto md:block">
         <table className="w-full min-w-[640px] border-separate border-spacing-0 text-left">
           <thead>
             <tr className="text-xs font-semibold uppercase tracking-wider text-subtle">

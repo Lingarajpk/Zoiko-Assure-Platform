@@ -13,11 +13,11 @@ type PanelProps = {
 export function Panel({ title, action, viewAllHref, delay = 0, className = "", children }: PanelProps) {
   return (
     <section
-      className={`glass card-hover rounded-3xl p-5 sm:p-6 animate-fade-up [--glow:#2F7CF6] ${className}`}
+      className={`glass card-hover min-w-0 rounded-3xl p-4 sm:p-6 animate-fade-up [--glow:#2F7CF6] ${className}`}
       style={{ ["--d" as string]: `${delay}ms` }}
     >
-      <header className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="text-lg font-bold tracking-tight text-fg sm:text-xl">{title}</h2>
+      <header className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <h2 className="text-base font-bold tracking-tight text-fg min-[380px]:text-lg sm:text-xl">{title}</h2>
         {action}
         {viewAllHref ? (
           <Link

@@ -28,6 +28,14 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  // Keep the page behind the mobile drawer from scrolling.
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   // Ctrl/Cmd+B toggles the sidebar, like most editors.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

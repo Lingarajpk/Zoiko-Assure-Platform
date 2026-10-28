@@ -21,11 +21,11 @@ export default function Loading() {
           <div key={i} className="skeleton border border-glass-border h-32 rounded-2xl" style={{ animationDelay: `${i * 120}ms` }} />
         ))}
       </div>
-      <div className="grid gap-5 xl:grid-cols-[1.45fr_1fr]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
         <div className="skeleton border border-glass-border h-72 rounded-2xl" />
         <div className="skeleton border border-glass-border h-72 rounded-2xl" />
       </div>
-      <div className="grid gap-5 xl:grid-cols-[1.45fr_1fr]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
         <div className="skeleton border border-glass-border h-80 rounded-2xl" />
         <div className="skeleton border border-glass-border h-80 rounded-2xl" />
       </div>

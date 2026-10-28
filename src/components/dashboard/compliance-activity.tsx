@@ -31,9 +31,12 @@ export function ComplianceActivity({ delay = 0 }: { delay?: number }) {
               </span>
               <div className="min-w-0 flex-1 pt-0.5">
                 <p className="text-sm font-semibold text-fg transition-colors group-hover/row:text-brand">{a.title}</p>
-                <p className="text-xs text-subtle">{a.meta}</p>
+                <p className="text-xs text-subtle">
+                  {a.meta}
+                  <span className="sm:hidden"> · {a.time}</span>
+                </p>
               </div>
-              <span className="shrink-0 whitespace-nowrap pt-0.5 text-xs text-subtle">{a.time}</span>
+              <span className="hidden shrink-0 whitespace-nowrap pt-0.5 text-xs text-subtle sm:block">{a.time}</span>
             </li>
           );
         })}

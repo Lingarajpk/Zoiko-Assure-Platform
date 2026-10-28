@@ -45,7 +45,7 @@ export function Sidebar({ open, onClose, collapsed, onToggleCollapsed }: Sidebar
 
       <aside
         ref={asideRef}
-        className={`glass fixed inset-y-3 left-3 z-40 flex w-[18rem] shrink-0 flex-col rounded-3xl transition-[transform,width] duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] lg:sticky lg:top-4 lg:inset-y-auto lg:left-auto lg:h-[calc(100vh-2rem)] lg:translate-x-0 ${
+        className={`glass fixed inset-y-3 left-3 z-40 flex w-[18rem] max-w-[calc(100vw-1.5rem)] shrink-0 flex-col rounded-3xl transition-[transform,width] duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] lg:sticky lg:top-4 lg:inset-y-auto lg:left-auto lg:h-[calc(100vh-2rem)] lg:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-[110%]"
         } ${collapsed ? "lg:w-[5.5rem]" : ""}`}
       >

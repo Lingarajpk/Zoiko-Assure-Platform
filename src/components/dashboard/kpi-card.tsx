@@ -20,7 +20,7 @@ export function KpiCard({ kpi, index }: { kpi: Kpi; index: number }) {
 
   return (
     <article
-      className="glass card-hover group rounded-3xl p-5 animate-fade-up"
+      className="glass card-hover group min-w-0 rounded-3xl p-4 animate-fade-up sm:p-5"
       style={{ ["--d" as string]: `${index * 90}ms`, ["--glow" as string]: tone.glow }}
     >
       <span

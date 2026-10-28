@@ -47,7 +47,7 @@ export function LoginForm() {
     <>
       <div
         key={shakeKey}
-        className={`glass-strong relative rounded-3xl p-7 sm:p-9 animate-fade-up ${shakeKey ? "animate-shake" : ""}`}
+        className={`glass-strong relative rounded-3xl p-5 min-[380px]:p-7 sm:p-9 animate-fade-up ${shakeKey ? "animate-shake" : ""}`}
         style={{ ["--d" as string]: "150ms" }}
       >
         {/* top glow edge */}
@@ -58,7 +58,7 @@ export function LoginForm() {
         </div>
 
         <div className="mt-6 text-center lg:mt-0 lg:text-left">
-          <h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">Welcome back</h2>
+          <h2 className="text-[1.6rem] font-bold tracking-tight text-fg sm:text-3xl">Welcome back</h2>
           <p className="mt-1.5 text-sm text-muted">Sign in to your ZoikoAssure admin console.</p>
         </div>
 
@@ -95,8 +95,8 @@ export function LoginForm() {
             }
           />
 
-          <div className="flex items-center justify-between text-sm">
-            <label className="group flex cursor-pointer select-none items-center gap-2.5 text-muted">
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 text-sm">
+            <label className="group flex cursor-pointer select-none items-center gap-2.5 whitespace-nowrap text-muted">
               <input
                 type="checkbox"
                 checked={remember}
@@ -110,7 +110,7 @@ export function LoginForm() {
               </span>
               Remember me
             </label>
-            <a href="#" className="font-medium text-brand transition-colors hover:text-brand-soft hover:underline underline-offset-4">
+            <a href="#" className="whitespace-nowrap font-medium text-brand transition-colors hover:text-brand-soft hover:underline underline-offset-4">
               Forgot password?
             </a>
           </div>
@@ -198,7 +198,7 @@ function Field({ id, label, type, value, onChange, icon, autoComplete, disabled,
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
         placeholder=" "
-        className="peer h-14 w-full rounded-xl border border-glass-border bg-input pl-11 pr-12 pt-4 text-[15px] text-fg outline-none transition-all duration-300 placeholder:text-transparent hover:border-brand/40 focus:border-brand focus:shadow-[0_0_0_4px_rgba(213,131,36,0.18),0_10px_30px_-12px_rgba(213,131,36,0.6)] disabled:opacity-60"
+        className="peer h-14 w-full rounded-xl border border-glass-border bg-input pl-11 pr-12 pt-4 text-base text-fg sm:text-[15px] outline-none transition-all duration-300 placeholder:text-transparent hover:border-brand/40 focus:border-brand focus:shadow-[0_0_0_4px_rgba(213,131,36,0.18),0_10px_30px_-12px_rgba(213,131,36,0.6)] disabled:opacity-60"
       />
       <label
         htmlFor={id}

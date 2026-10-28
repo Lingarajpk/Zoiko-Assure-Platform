@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   return (
     <div className="space-y-5">
-      <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col gap-4 pt-2 xl:flex-row xl:items-end xl:justify-between">
         <div className="animate-fade-up">
           <h1 className="text-3xl font-extrabold tracking-tight text-fg sm:text-4xl">
             Welcome back,{" "}
@@ -35,12 +35,12 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid gap-5 xl:grid-cols-[1.45fr_1fr]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
         <CompliancePosture delay={350} />
         <RegulatoryUpdates delay={450} />
       </div>
 
-      <div className="grid gap-5 xl:grid-cols-[1.45fr_1fr]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
         <PriorityActions delay={550} />
         <ComplianceActivity delay={650} />
       </div>

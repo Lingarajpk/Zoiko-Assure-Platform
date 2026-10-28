@@ -14,6 +14,7 @@ import {
   Settings,
   Sun,
   User,
+  X,
 } from "lucide-react";
 import { endDemoSession } from "@/lib/session";
 
@@ -25,7 +26,7 @@ type TopbarProps = {
 
 export function Topbar({ onMenu, onToggleSidebar, collapsed }: TopbarProps) {
   return (
-    <header className="glass sticky top-4 z-20 flex items-center gap-3 rounded-2xl px-3 py-2.5 sm:px-4 animate-fade-in">
+    <header className="glass-bar sticky top-3 z-20 flex items-center gap-2 rounded-2xl px-2.5 py-2 sm:top-4 sm:gap-3 sm:px-4 sm:py-2.5 animate-fade-in">
       <button
         onClick={onMenu}
         className="btn-glass grid h-10 w-10 place-items-center rounded-xl text-fg lg:hidden"
@@ -62,31 +63,61 @@ export function Topbar({ onMenu, onToggleSidebar, collapsed }: TopbarProps) {
 
 function SearchBox() {
   const inputRef = useRef<HTMLInputElement>(null);
+  // Phones get a search button that expands the field over the whole top bar.
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
+        setMobileOpen(true);
         inputRef.current?.focus();
       }
+      if (e.key === "Escape") setMobileOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    if (mobileOpen) inputRef.current?.focus();
+  }, [mobileOpen]);
+
   return (
-    <label className="group relative hidden min-w-0 flex-1 items-center sm:flex sm:max-w-xl">
-      <Search className="pointer-events-none absolute left-4 h-4.5 w-4.5 text-subtle transition-colors duration-300 group-focus-within:text-brand" />
-      <input
-        ref={inputRef}
-        type="search"
-        placeholder="Search regulations, obligations, controls, evidence…"
-        className="h-11 w-full rounded-xl border border-glass-border bg-input pl-11 pr-16 text-sm text-fg outline-none transition-all duration-300 placeholder:text-subtle hover:border-brand/40 focus:border-brand focus:shadow-[0_0_0_4px_rgba(213,131,36,0.15)]"
-      />
-      <kbd className="pointer-events-none absolute right-3 rounded-md border border-glass-border bg-glass px-1.5 py-0.5 text-[11px] font-semibold text-subtle">
-        Ctrl K
-      </kbd>
-    </label>
+    <>
+      <button
+        onClick={() => setMobileOpen(true)}
+        className="btn-glass grid h-10 w-10 shrink-0 place-items-center rounded-xl text-fg sm:hidden"
+        aria-label="Search"
+      >
+        <Search className="h-5 w-5" />
+      </button>
+
+      <label
+        className={`group min-w-0 flex-1 items-center sm:relative sm:flex sm:max-w-xl ${
+          mobileOpen ? "flex max-sm:absolute max-sm:inset-1.5 max-sm:z-10 max-sm:animate-fade-in" : "hidden"
+        }`}
+      >
+        <Search className="pointer-events-none absolute left-4 h-4.5 w-4.5 text-subtle transition-colors duration-300 group-focus-within:text-brand" />
+        <input
+          ref={inputRef}
+          type="search"
+          placeholder="Search regulations, obligations, controls, evidence…"
+          className="h-full w-full rounded-xl border border-glass-border bg-input pl-11 pr-12 text-base text-fg outline-none transition-all duration-300 placeholder:text-subtle hover:border-brand/40 focus:border-brand focus:shadow-[0_0_0_4px_rgba(213,131,36,0.15)] max-sm:bg-[#0c2747] max-sm:light:bg-white sm:h-11 sm:text-sm md:pr-16"
+        />
+        <kbd className="pointer-events-none absolute right-3 hidden rounded-md border border-glass-border bg-glass px-1.5 py-0.5 text-[11px] font-semibold text-subtle md:block">
+          Ctrl K
+        </kbd>
+        <button
+          type="button"
+          onClick={() => setMobileOpen(false)}
+          className="absolute right-2 rounded-lg p-1.5 text-subtle hover:text-fg sm:hidden"
+          aria-label="Close search"
+        >
+          <X className="h-5 w-5" />
+        </button>
+      </label>
+    </>
   );
 }
 
@@ -158,7 +189,7 @@ function Notifications() {
   const ref = useDismiss<HTMLDivElement>(open, () => setOpen(false));
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="sm:relative">
       <button
         onClick={() => setOpen((v) => !v)}
         className="btn-glass group relative grid h-10 w-10 place-items-center rounded-xl text-fg"
@@ -172,7 +203,7 @@ function Notifications() {
         </span>
       </button>
 
-      <Dropdown open={open} className="w-80">
+      <Dropdown open={open} className="max-sm:left-0 max-sm:w-auto sm:w-80">
         <div className="flex items-center justify-between px-4 pb-2 pt-3">
           <p className="text-sm font-semibold text-fg">Notifications</p>
           <span className="rounded-full bg-brand/20 px-2 py-0.5 text-[11px] font-bold text-brand">3 new</span>
